@@ -15,11 +15,11 @@ class _$UserTearOff {
 
 // ignore: unused_element
   _User call(
-      {@required String id, @required String name, @required String email}) {
+      {@required UniqueId id, @required EmailAddress email, String name}) {
     return _User(
       id: id,
-      name: name,
       email: email,
+      name: name,
     );
   }
 }
@@ -30,9 +30,9 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
-  String get id;
+  UniqueId get id;
+  EmailAddress get email;
   String get name;
-  String get email;
 
   $UserCopyWith<User> get copyWith;
 }
@@ -41,7 +41,7 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({String id, String name, String email});
+  $Res call({UniqueId id, EmailAddress email, String name});
 }
 
 /// @nodoc
@@ -55,13 +55,13 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
   @override
   $Res call({
     Object id = freezed,
-    Object name = freezed,
     Object email = freezed,
+    Object name = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
+      id: id == freezed ? _value.id : id as UniqueId,
+      email: email == freezed ? _value.email : email as EmailAddress,
       name: name == freezed ? _value.name : name as String,
-      email: email == freezed ? _value.email : email as String,
     ));
   }
 }
@@ -71,7 +71,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, String email});
+  $Res call({UniqueId id, EmailAddress email, String name});
 }
 
 /// @nodoc
@@ -86,34 +86,33 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   @override
   $Res call({
     Object id = freezed,
-    Object name = freezed,
     Object email = freezed,
+    Object name = freezed,
   }) {
     return _then(_User(
-      id: id == freezed ? _value.id : id as String,
+      id: id == freezed ? _value.id : id as UniqueId,
+      email: email == freezed ? _value.email : email as EmailAddress,
       name: name == freezed ? _value.name : name as String,
-      email: email == freezed ? _value.email : email as String,
     ));
   }
 }
 
 /// @nodoc
 class _$_User implements _User {
-  _$_User({@required this.id, @required this.name, @required this.email})
+  _$_User({@required this.id, @required this.email, this.name})
       : assert(id != null),
-        assert(name != null),
         assert(email != null);
 
   @override
-  final String id;
+  final UniqueId id;
+  @override
+  final EmailAddress email;
   @override
   final String name;
-  @override
-  final String email;
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, email: $email)';
+    return 'User(id: $id, email: $email, name: $name)';
   }
 
   @override
@@ -122,18 +121,18 @@ class _$_User implements _User {
         (other is _User &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(email);
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(name);
 
   @override
   _$UserCopyWith<_User> get copyWith =>
@@ -142,16 +141,16 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {@required String id,
-      @required String name,
-      @required String email}) = _$_User;
+      {@required UniqueId id,
+      @required EmailAddress email,
+      String name}) = _$_User;
 
   @override
-  String get id;
+  UniqueId get id;
+  @override
+  EmailAddress get email;
   @override
   String get name;
-  @override
-  String get email;
   @override
   _$UserCopyWith<_User> get copyWith;
 }
