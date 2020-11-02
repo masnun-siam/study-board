@@ -1,9 +1,16 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'dependency_injector/get_it.dart';
+import 'common/page_routes.gr.dart';
+import 'dependency_injection/getit.dart';
+import 'features/authentication/application/auth/auth_bloc.dart';
+import 'features/authentication/application/login/login_bloc.dart';
 
-void main(List<String> args) {
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   runApp(StudyResources());
 }
@@ -11,11 +18,34 @@ void main(List<String> args) {
 class StudyResources extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MultiBlocProvider(
-        providers: null,
-        child: null,
-      ),
+    return FutureBuilder(
+      future: Firebase.initializeApp(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => getIt<AuthBloc>()
+                  ..add(const AuthEvent.authCheckRequested()),
+              ),
+              BlocProvider(
+                create: (context) => getIt<LoginBloc>(),
+              ),
+            ],
+            child: MaterialApp(
+              builder:
+                  ExtendedNavigator.builder<PageRoutes>(router: PageRoutes()),
+            ),
+          );
+        } else {
+          FlushbarHelper.createError(message: 'Firebase error').show(context);
+          return const MaterialApp(
+            home: Scaffold(
+              body: SizedBox(),
+            ),
+          );
+        }
+      },
     );
   }
 }
