@@ -1,23 +1,26 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:study_resources/features/authentication/infrastructure/userdto.dart';
 
 import '../domain/auth_failure.dart';
 import '../domain/auth_value_objects.dart';
 import '../domain/i_auth_facade.dart';
 import '../domain/user.dart';
-import 'firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
+  final FirebaseFirestore _firestore;
   final DataConnectionChecker _dataConnectionChecker;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._dataConnectionChecker);
+  FirebaseAuthFacade(
+      this._firebaseAuth, this._dataConnectionChecker, this._firestore);
 
   @override
   Future<Either<AuthFailure, Unit>> loginWithEmailAndPassword({
@@ -53,6 +56,7 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
     @required EmailAddress email,
     @required Password password,
+    @required int userType,
   }) async {
     final emailStr = email.getOrCrash();
     final passwordStr = password.getOrCrash();
@@ -63,6 +67,19 @@ class FirebaseAuthFacade implements IAuthFacade {
           email: emailStr,
           password: passwordStr,
         );
+        final User user = _firebaseAuth.currentUser;
+        user.updateProfile(displayName: userType.toString());
+        if (userType == 0) {
+          await _firestore.collection('students').doc(user.uid).set({
+            'studentId': user.uid,
+            'courses': <String>[],
+          });
+        } else {
+          await _firestore.collection('teachers').doc(user.uid).set({
+            'teachersId': user.uid,
+            'courses': <String>[],
+          });
+        }
         return right(unit);
       } on SocketException {
         return left(const AuthFailure.networkError());
@@ -81,8 +98,17 @@ class FirebaseAuthFacade implements IAuthFacade {
   }
 
   @override
-  Option<CurrentUser> getCurrentUser() =>
-      optionOf((_firebaseAuth.currentUser)?.toDomain());
+  Option<CurrentUser> getCurrentUser() {
+    if (_firebaseAuth.currentUser != null) {
+      return some(Userdto(
+        userId: _firebaseAuth.currentUser.uid,
+        email: _firebaseAuth.currentUser.email,
+        userType: int.parse(_firebaseAuth.currentUser.displayName),
+      ).toDomain());
+    } else {
+      return none();
+    }
+  }
 
   @override
   Future<void> signOutCurrentUser() => Future.wait([

@@ -15,6 +15,9 @@ import '../features/authentication/infrastructure/firebase_auth_facade.dart';
 import '../core/infrastructure/firebase_injectable_class.dart';
 import '../features/authentication/domain/i_auth_facade.dart';
 import '../features/authentication/application/login/login_bloc.dart';
+import '../features/teachers_room/features/home/domain/usecases/showtotalclasses.dart';
+import '../features/teachers_room/features/home/domain/usecases/showtotalcourses.dart';
+import '../features/teachers_room/features/home/domain/repositories/teacher_home_repository.dart';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -30,9 +33,16 @@ GetIt $initGetIt(
       () => firebaseInjectableModule.dataConnectionChecker);
   gh.lazySingleton<FirebaseAuth>(() => firebaseInjectableModule.firebaseAuth);
   gh.lazySingleton<FirebaseFirestore>(() => firebaseInjectableModule.firestore);
-  gh.lazySingleton<IAuthFacade>(() =>
-      FirebaseAuthFacade(get<FirebaseAuth>(), get<DataConnectionChecker>()));
+  gh.lazySingleton<IAuthFacade>(() => FirebaseAuthFacade(
+        get<FirebaseAuth>(),
+        get<DataConnectionChecker>(),
+        get<FirebaseFirestore>(),
+      ));
   gh.factory<LoginBloc>(() => LoginBloc(get<IAuthFacade>()));
+  gh.lazySingleton<ShowTotalClasses>(
+      () => ShowTotalClasses(get<TeacherHomeRepository>()));
+  gh.lazySingleton<ShowTotalCourses>(
+      () => ShowTotalCourses(get<TeacherHomeRepository>()));
   gh.factory<AuthBloc>(() => AuthBloc(get<IAuthFacade>()));
   return get;
 }

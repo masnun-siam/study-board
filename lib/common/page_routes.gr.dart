@@ -11,16 +11,19 @@ import 'package:flutter/material.dart';
 
 import '../features/authentication/presentation/pages/login.dart';
 import '../features/authentication/presentation/pages/splash.dart';
-import '../features/home/presentation/pages/home.dart';
+import '../features/students_room/home/presentation/pages/home.dart';
+import '../features/teachers_room/features/home/presentation/pages/home.dart';
 
 class Routes {
   static const String splashScreen = '/';
   static const String loginPage = '/login-page';
-  static const String homePage = '/home-page';
+  static const String studentHomePage = '/student-home-page';
+  static const String teachersHomePage = '/teachers-home-page';
   static const all = <String>{
     splashScreen,
     loginPage,
-    homePage,
+    studentHomePage,
+    teachersHomePage,
   };
 }
 
@@ -30,7 +33,8 @@ class PageRoutes extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.splashScreen, page: SplashScreen),
     RouteDef(Routes.loginPage, page: LoginPage),
-    RouteDef(Routes.homePage, page: HomePage),
+    RouteDef(Routes.studentHomePage, page: StudentHomePage),
+    RouteDef(Routes.teachersHomePage, page: TeachersHomePage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -47,9 +51,15 @@ class PageRoutes extends RouterBase {
         settings: data,
       );
     },
-    HomePage: (data) {
+    StudentHomePage: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(),
+        builder: (context) => StudentHomePage(),
+        settings: data,
+      );
+    },
+    TeachersHomePage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => TeachersHomePage(),
         settings: data,
       );
     },

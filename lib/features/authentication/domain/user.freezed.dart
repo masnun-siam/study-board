@@ -14,10 +14,14 @@ class _$CurrentUserTearOff {
   const _$CurrentUserTearOff();
 
 // ignore: unused_element
-  _CurrentUser call({@required UniqueId id, @required EmailAddress email}) {
+  _CurrentUser call(
+      {@required UniqueId id,
+      @required EmailAddress email,
+      @required ACCOUNT_TYPE userType}) {
     return _CurrentUser(
       id: id,
       email: email,
+      userType: userType,
     );
   }
 }
@@ -30,6 +34,7 @@ const $CurrentUser = _$CurrentUserTearOff();
 mixin _$CurrentUser {
   UniqueId get id;
   EmailAddress get email;
+  ACCOUNT_TYPE get userType;
 
   $CurrentUserCopyWith<CurrentUser> get copyWith;
 }
@@ -39,7 +44,7 @@ abstract class $CurrentUserCopyWith<$Res> {
   factory $CurrentUserCopyWith(
           CurrentUser value, $Res Function(CurrentUser) then) =
       _$CurrentUserCopyWithImpl<$Res>;
-  $Res call({UniqueId id, EmailAddress email});
+  $Res call({UniqueId id, EmailAddress email, ACCOUNT_TYPE userType});
 }
 
 /// @nodoc
@@ -54,10 +59,13 @@ class _$CurrentUserCopyWithImpl<$Res> implements $CurrentUserCopyWith<$Res> {
   $Res call({
     Object id = freezed,
     Object email = freezed,
+    Object userType = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as UniqueId,
       email: email == freezed ? _value.email : email as EmailAddress,
+      userType:
+          userType == freezed ? _value.userType : userType as ACCOUNT_TYPE,
     ));
   }
 }
@@ -69,7 +77,7 @@ abstract class _$CurrentUserCopyWith<$Res>
           _CurrentUser value, $Res Function(_CurrentUser) then) =
       __$CurrentUserCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, EmailAddress email});
+  $Res call({UniqueId id, EmailAddress email, ACCOUNT_TYPE userType});
 }
 
 /// @nodoc
@@ -86,28 +94,35 @@ class __$CurrentUserCopyWithImpl<$Res> extends _$CurrentUserCopyWithImpl<$Res>
   $Res call({
     Object id = freezed,
     Object email = freezed,
+    Object userType = freezed,
   }) {
     return _then(_CurrentUser(
       id: id == freezed ? _value.id : id as UniqueId,
       email: email == freezed ? _value.email : email as EmailAddress,
+      userType:
+          userType == freezed ? _value.userType : userType as ACCOUNT_TYPE,
     ));
   }
 }
 
 /// @nodoc
 class _$_CurrentUser implements _CurrentUser {
-  const _$_CurrentUser({@required this.id, @required this.email})
+  const _$_CurrentUser(
+      {@required this.id, @required this.email, @required this.userType})
       : assert(id != null),
-        assert(email != null);
+        assert(email != null),
+        assert(userType != null);
 
   @override
   final UniqueId id;
   @override
   final EmailAddress email;
+  @override
+  final ACCOUNT_TYPE userType;
 
   @override
   String toString() {
-    return 'CurrentUser(id: $id, email: $email)';
+    return 'CurrentUser(id: $id, email: $email, userType: $userType)';
   }
 
   @override
@@ -117,14 +132,18 @@ class _$_CurrentUser implements _CurrentUser {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)));
+                const DeepCollectionEquality().equals(other.email, email)) &&
+            (identical(other.userType, userType) ||
+                const DeepCollectionEquality()
+                    .equals(other.userType, userType)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(email);
+      const DeepCollectionEquality().hash(email) ^
+      const DeepCollectionEquality().hash(userType);
 
   @override
   _$CurrentUserCopyWith<_CurrentUser> get copyWith =>
@@ -133,12 +152,16 @@ class _$_CurrentUser implements _CurrentUser {
 
 abstract class _CurrentUser implements CurrentUser {
   const factory _CurrentUser(
-      {@required UniqueId id, @required EmailAddress email}) = _$_CurrentUser;
+      {@required UniqueId id,
+      @required EmailAddress email,
+      @required ACCOUNT_TYPE userType}) = _$_CurrentUser;
 
   @override
   UniqueId get id;
   @override
   EmailAddress get email;
+  @override
+  ACCOUNT_TYPE get userType;
   @override
   _$CurrentUserCopyWith<_CurrentUser> get copyWith;
 }

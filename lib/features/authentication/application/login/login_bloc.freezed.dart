@@ -21,6 +21,13 @@ class _$LoginEventTearOff {
   }
 
 // ignore: unused_element
+  UserTypeChanged userTypeChanged(int userType) {
+    return UserTypeChanged(
+      userType,
+    );
+  }
+
+// ignore: unused_element
   PasswordChanged passwordChanged(String passwordStr) {
     return PasswordChanged(
       passwordStr,
@@ -52,6 +59,7 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
+    @required Result userTypeChanged(int userType),
     @required Result passwordChanged(String passwordStr),
     @required Result registerWithEmailAndPasswordPressed(),
     @required Result signInWithEmailAndPasswordPressed(),
@@ -60,6 +68,7 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
+    Result userTypeChanged(int userType),
     Result passwordChanged(String passwordStr),
     Result registerWithEmailAndPasswordPressed(),
     Result signInWithEmailAndPasswordPressed(),
@@ -69,6 +78,7 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result emailChanged(EmailChanged value),
+    @required Result userTypeChanged(UserTypeChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
         Result registerWithEmailAndPasswordPressed(
@@ -81,6 +91,7 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
+    Result userTypeChanged(UserTypeChanged value),
     Result passwordChanged(PasswordChanged value),
     Result registerWithEmailAndPasswordPressed(
         RegisterWithEmailAndPasswordPressed value),
@@ -168,12 +179,14 @@ class _$EmailChanged implements EmailChanged {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
+    @required Result userTypeChanged(int userType),
     @required Result passwordChanged(String passwordStr),
     @required Result registerWithEmailAndPasswordPressed(),
     @required Result signInWithEmailAndPasswordPressed(),
     @required Result getCurrentUser(),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -185,6 +198,7 @@ class _$EmailChanged implements EmailChanged {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
+    Result userTypeChanged(int userType),
     Result passwordChanged(String passwordStr),
     Result registerWithEmailAndPasswordPressed(),
     Result signInWithEmailAndPasswordPressed(),
@@ -202,6 +216,7 @@ class _$EmailChanged implements EmailChanged {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result emailChanged(EmailChanged value),
+    @required Result userTypeChanged(UserTypeChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
         Result registerWithEmailAndPasswordPressed(
@@ -212,6 +227,7 @@ class _$EmailChanged implements EmailChanged {
     @required Result getCurrentUser(GetCurrentUser value),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -223,6 +239,7 @@ class _$EmailChanged implements EmailChanged {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
+    Result userTypeChanged(UserTypeChanged value),
     Result passwordChanged(PasswordChanged value),
     Result registerWithEmailAndPasswordPressed(
         RegisterWithEmailAndPasswordPressed value),
@@ -244,6 +261,151 @@ abstract class EmailChanged implements LoginEvent {
 
   String get emailStr;
   $EmailChangedCopyWith<EmailChanged> get copyWith;
+}
+
+/// @nodoc
+abstract class $UserTypeChangedCopyWith<$Res> {
+  factory $UserTypeChangedCopyWith(
+          UserTypeChanged value, $Res Function(UserTypeChanged) then) =
+      _$UserTypeChangedCopyWithImpl<$Res>;
+  $Res call({int userType});
+}
+
+/// @nodoc
+class _$UserTypeChangedCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements $UserTypeChangedCopyWith<$Res> {
+  _$UserTypeChangedCopyWithImpl(
+      UserTypeChanged _value, $Res Function(UserTypeChanged) _then)
+      : super(_value, (v) => _then(v as UserTypeChanged));
+
+  @override
+  UserTypeChanged get _value => super._value as UserTypeChanged;
+
+  @override
+  $Res call({
+    Object userType = freezed,
+  }) {
+    return _then(UserTypeChanged(
+      userType == freezed ? _value.userType : userType as int,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UserTypeChanged implements UserTypeChanged {
+  const _$UserTypeChanged(this.userType) : assert(userType != null);
+
+  @override
+  final int userType;
+
+  @override
+  String toString() {
+    return 'LoginEvent.userTypeChanged(userType: $userType)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UserTypeChanged &&
+            (identical(other.userType, userType) ||
+                const DeepCollectionEquality()
+                    .equals(other.userType, userType)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userType);
+
+  @override
+  $UserTypeChangedCopyWith<UserTypeChanged> get copyWith =>
+      _$UserTypeChangedCopyWithImpl<UserTypeChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result emailChanged(String emailStr),
+    @required Result userTypeChanged(int userType),
+    @required Result passwordChanged(String passwordStr),
+    @required Result registerWithEmailAndPasswordPressed(),
+    @required Result signInWithEmailAndPasswordPressed(),
+    @required Result getCurrentUser(),
+  }) {
+    assert(emailChanged != null);
+    assert(userTypeChanged != null);
+    assert(passwordChanged != null);
+    assert(registerWithEmailAndPasswordPressed != null);
+    assert(signInWithEmailAndPasswordPressed != null);
+    assert(getCurrentUser != null);
+    return userTypeChanged(userType);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result emailChanged(String emailStr),
+    Result userTypeChanged(int userType),
+    Result passwordChanged(String passwordStr),
+    Result registerWithEmailAndPasswordPressed(),
+    Result signInWithEmailAndPasswordPressed(),
+    Result getCurrentUser(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (userTypeChanged != null) {
+      return userTypeChanged(userType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result emailChanged(EmailChanged value),
+    @required Result userTypeChanged(UserTypeChanged value),
+    @required Result passwordChanged(PasswordChanged value),
+    @required
+        Result registerWithEmailAndPasswordPressed(
+            RegisterWithEmailAndPasswordPressed value),
+    @required
+        Result signInWithEmailAndPasswordPressed(
+            SignInWithEmailAndPasswordPressed value),
+    @required Result getCurrentUser(GetCurrentUser value),
+  }) {
+    assert(emailChanged != null);
+    assert(userTypeChanged != null);
+    assert(passwordChanged != null);
+    assert(registerWithEmailAndPasswordPressed != null);
+    assert(signInWithEmailAndPasswordPressed != null);
+    assert(getCurrentUser != null);
+    return userTypeChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result emailChanged(EmailChanged value),
+    Result userTypeChanged(UserTypeChanged value),
+    Result passwordChanged(PasswordChanged value),
+    Result registerWithEmailAndPasswordPressed(
+        RegisterWithEmailAndPasswordPressed value),
+    Result signInWithEmailAndPasswordPressed(
+        SignInWithEmailAndPasswordPressed value),
+    Result getCurrentUser(GetCurrentUser value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (userTypeChanged != null) {
+      return userTypeChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserTypeChanged implements LoginEvent {
+  const factory UserTypeChanged(int userType) = _$UserTypeChanged;
+
+  int get userType;
+  $UserTypeChangedCopyWith<UserTypeChanged> get copyWith;
 }
 
 /// @nodoc
@@ -307,12 +469,14 @@ class _$PasswordChanged implements PasswordChanged {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
+    @required Result userTypeChanged(int userType),
     @required Result passwordChanged(String passwordStr),
     @required Result registerWithEmailAndPasswordPressed(),
     @required Result signInWithEmailAndPasswordPressed(),
     @required Result getCurrentUser(),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -324,6 +488,7 @@ class _$PasswordChanged implements PasswordChanged {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
+    Result userTypeChanged(int userType),
     Result passwordChanged(String passwordStr),
     Result registerWithEmailAndPasswordPressed(),
     Result signInWithEmailAndPasswordPressed(),
@@ -341,6 +506,7 @@ class _$PasswordChanged implements PasswordChanged {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result emailChanged(EmailChanged value),
+    @required Result userTypeChanged(UserTypeChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
         Result registerWithEmailAndPasswordPressed(
@@ -351,6 +517,7 @@ class _$PasswordChanged implements PasswordChanged {
     @required Result getCurrentUser(GetCurrentUser value),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -362,6 +529,7 @@ class _$PasswordChanged implements PasswordChanged {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
+    Result userTypeChanged(UserTypeChanged value),
     Result passwordChanged(PasswordChanged value),
     Result registerWithEmailAndPasswordPressed(
         RegisterWithEmailAndPasswordPressed value),
@@ -430,12 +598,14 @@ class _$RegisterWithEmailAndPasswordPressed
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
+    @required Result userTypeChanged(int userType),
     @required Result passwordChanged(String passwordStr),
     @required Result registerWithEmailAndPasswordPressed(),
     @required Result signInWithEmailAndPasswordPressed(),
     @required Result getCurrentUser(),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -447,6 +617,7 @@ class _$RegisterWithEmailAndPasswordPressed
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
+    Result userTypeChanged(int userType),
     Result passwordChanged(String passwordStr),
     Result registerWithEmailAndPasswordPressed(),
     Result signInWithEmailAndPasswordPressed(),
@@ -464,6 +635,7 @@ class _$RegisterWithEmailAndPasswordPressed
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result emailChanged(EmailChanged value),
+    @required Result userTypeChanged(UserTypeChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
         Result registerWithEmailAndPasswordPressed(
@@ -474,6 +646,7 @@ class _$RegisterWithEmailAndPasswordPressed
     @required Result getCurrentUser(GetCurrentUser value),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -485,6 +658,7 @@ class _$RegisterWithEmailAndPasswordPressed
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
+    Result userTypeChanged(UserTypeChanged value),
     Result passwordChanged(PasswordChanged value),
     Result registerWithEmailAndPasswordPressed(
         RegisterWithEmailAndPasswordPressed value),
@@ -551,12 +725,14 @@ class _$SignInWithEmailAndPasswordPressed
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
+    @required Result userTypeChanged(int userType),
     @required Result passwordChanged(String passwordStr),
     @required Result registerWithEmailAndPasswordPressed(),
     @required Result signInWithEmailAndPasswordPressed(),
     @required Result getCurrentUser(),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -568,6 +744,7 @@ class _$SignInWithEmailAndPasswordPressed
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
+    Result userTypeChanged(int userType),
     Result passwordChanged(String passwordStr),
     Result registerWithEmailAndPasswordPressed(),
     Result signInWithEmailAndPasswordPressed(),
@@ -585,6 +762,7 @@ class _$SignInWithEmailAndPasswordPressed
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result emailChanged(EmailChanged value),
+    @required Result userTypeChanged(UserTypeChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
         Result registerWithEmailAndPasswordPressed(
@@ -595,6 +773,7 @@ class _$SignInWithEmailAndPasswordPressed
     @required Result getCurrentUser(GetCurrentUser value),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -606,6 +785,7 @@ class _$SignInWithEmailAndPasswordPressed
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
+    Result userTypeChanged(UserTypeChanged value),
     Result passwordChanged(PasswordChanged value),
     Result registerWithEmailAndPasswordPressed(
         RegisterWithEmailAndPasswordPressed value),
@@ -666,12 +846,14 @@ class _$GetCurrentUser implements GetCurrentUser {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result emailChanged(String emailStr),
+    @required Result userTypeChanged(int userType),
     @required Result passwordChanged(String passwordStr),
     @required Result registerWithEmailAndPasswordPressed(),
     @required Result signInWithEmailAndPasswordPressed(),
     @required Result getCurrentUser(),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -683,6 +865,7 @@ class _$GetCurrentUser implements GetCurrentUser {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result emailChanged(String emailStr),
+    Result userTypeChanged(int userType),
     Result passwordChanged(String passwordStr),
     Result registerWithEmailAndPasswordPressed(),
     Result signInWithEmailAndPasswordPressed(),
@@ -700,6 +883,7 @@ class _$GetCurrentUser implements GetCurrentUser {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result emailChanged(EmailChanged value),
+    @required Result userTypeChanged(UserTypeChanged value),
     @required Result passwordChanged(PasswordChanged value),
     @required
         Result registerWithEmailAndPasswordPressed(
@@ -710,6 +894,7 @@ class _$GetCurrentUser implements GetCurrentUser {
     @required Result getCurrentUser(GetCurrentUser value),
   }) {
     assert(emailChanged != null);
+    assert(userTypeChanged != null);
     assert(passwordChanged != null);
     assert(registerWithEmailAndPasswordPressed != null);
     assert(signInWithEmailAndPasswordPressed != null);
@@ -721,6 +906,7 @@ class _$GetCurrentUser implements GetCurrentUser {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result emailChanged(EmailChanged value),
+    Result userTypeChanged(UserTypeChanged value),
     Result passwordChanged(PasswordChanged value),
     Result registerWithEmailAndPasswordPressed(
         RegisterWithEmailAndPasswordPressed value),
@@ -748,6 +934,7 @@ class _$LoginStateTearOff {
 // ignore: unused_element
   _LoginState call(
       {@required EmailAddress emailAddress,
+      @required int userType,
       @required Password password,
       @required bool startValidation,
       @required bool isSubmitting,
@@ -755,6 +942,7 @@ class _$LoginStateTearOff {
       @required Option<Either<AuthFailure, Unit>> authFailureOrSuccessOption}) {
     return _LoginState(
       emailAddress: emailAddress,
+      userType: userType,
       password: password,
       startValidation: startValidation,
       isSubmitting: isSubmitting,
@@ -771,6 +959,7 @@ const $LoginState = _$LoginStateTearOff();
 /// @nodoc
 mixin _$LoginState {
   EmailAddress get emailAddress;
+  int get userType;
   Password get password;
   bool get startValidation;
   bool get isSubmitting;
@@ -787,6 +976,7 @@ abstract class $LoginStateCopyWith<$Res> {
       _$LoginStateCopyWithImpl<$Res>;
   $Res call(
       {EmailAddress emailAddress,
+      int userType,
       Password password,
       bool startValidation,
       bool isSubmitting,
@@ -805,6 +995,7 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   @override
   $Res call({
     Object emailAddress = freezed,
+    Object userType = freezed,
     Object password = freezed,
     Object startValidation = freezed,
     Object isSubmitting = freezed,
@@ -815,6 +1006,7 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
           : emailAddress as EmailAddress,
+      userType: userType == freezed ? _value.userType : userType as int,
       password: password == freezed ? _value.password : password as Password,
       startValidation: startValidation == freezed
           ? _value.startValidation
@@ -839,6 +1031,7 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
   @override
   $Res call(
       {EmailAddress emailAddress,
+      int userType,
       Password password,
       bool startValidation,
       bool isSubmitting,
@@ -859,6 +1052,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object emailAddress = freezed,
+    Object userType = freezed,
     Object password = freezed,
     Object startValidation = freezed,
     Object isSubmitting = freezed,
@@ -869,6 +1063,7 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
       emailAddress: emailAddress == freezed
           ? _value.emailAddress
           : emailAddress as EmailAddress,
+      userType: userType == freezed ? _value.userType : userType as int,
       password: password == freezed ? _value.password : password as Password,
       startValidation: startValidation == freezed
           ? _value.startValidation
@@ -889,12 +1084,14 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 class _$_LoginState implements _LoginState {
   const _$_LoginState(
       {@required this.emailAddress,
+      @required this.userType,
       @required this.password,
       @required this.startValidation,
       @required this.isSubmitting,
       @required this.currentUser,
       @required this.authFailureOrSuccessOption})
       : assert(emailAddress != null),
+        assert(userType != null),
         assert(password != null),
         assert(startValidation != null),
         assert(isSubmitting != null),
@@ -903,6 +1100,8 @@ class _$_LoginState implements _LoginState {
 
   @override
   final EmailAddress emailAddress;
+  @override
+  final int userType;
   @override
   final Password password;
   @override
@@ -916,7 +1115,7 @@ class _$_LoginState implements _LoginState {
 
   @override
   String toString() {
-    return 'LoginState(emailAddress: $emailAddress, password: $password, startValidation: $startValidation, isSubmitting: $isSubmitting, currentUser: $currentUser, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
+    return 'LoginState(emailAddress: $emailAddress, userType: $userType, password: $password, startValidation: $startValidation, isSubmitting: $isSubmitting, currentUser: $currentUser, authFailureOrSuccessOption: $authFailureOrSuccessOption)';
   }
 
   @override
@@ -926,6 +1125,9 @@ class _$_LoginState implements _LoginState {
             (identical(other.emailAddress, emailAddress) ||
                 const DeepCollectionEquality()
                     .equals(other.emailAddress, emailAddress)) &&
+            (identical(other.userType, userType) ||
+                const DeepCollectionEquality()
+                    .equals(other.userType, userType)) &&
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
@@ -949,6 +1151,7 @@ class _$_LoginState implements _LoginState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(emailAddress) ^
+      const DeepCollectionEquality().hash(userType) ^
       const DeepCollectionEquality().hash(password) ^
       const DeepCollectionEquality().hash(startValidation) ^
       const DeepCollectionEquality().hash(isSubmitting) ^
@@ -965,6 +1168,8 @@ abstract class _LoginState implements LoginState {
           {@required
               EmailAddress emailAddress,
           @required
+              int userType,
+          @required
               Password password,
           @required
               bool startValidation,
@@ -978,6 +1183,8 @@ abstract class _LoginState implements LoginState {
 
   @override
   EmailAddress get emailAddress;
+  @override
+  int get userType;
   @override
   Password get password;
   @override

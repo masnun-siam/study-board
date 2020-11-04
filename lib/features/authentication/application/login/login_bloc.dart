@@ -39,6 +39,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           authFailureOrSuccessOption: none(),
         );
       },
+      userTypeChanged: (e) async* {
+        yield state.copyWith(
+          userType: e.userType,
+          authFailureOrSuccessOption: none(),
+        );
+      },
       registerWithEmailAndPasswordPressed: (e) async* {
         yield* _performActionOnAuthFacadeRegistrationWithEmailAndPassword(
           _authFacade.registerWithEmailAndPassword,
@@ -54,7 +60,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield state.copyWith(
           currentUser: user,
           isSubmitting: false,
-        ); 
+        );
       },
     );
   }
@@ -63,6 +69,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     Future<Either<AuthFailure, Unit>> Function({
       @required EmailAddress email,
       @required Password password,
+      @required int userType,
     })
         forwardCall,
   ) async* {
@@ -77,6 +84,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       failureOrSuccess = await forwardCall(
         email: state.emailAddress,
         password: state.password,
+        userType: state.userType,
       );
     }
     yield state.copyWith(

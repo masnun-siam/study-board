@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:study_resources/features/authentication/domain/user.dart';
 
 import '../../domain/i_auth_facade.dart';
 
@@ -25,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final userOption = authFacade.getCurrentUser();
         yield userOption.fold(
           () => const AuthState.unAuthenticated(),
-          (_) => const AuthState.authenticated(),
+          (user) => AuthState.authenticated(user),
         );
       },
       signedOut: (e) async* {
