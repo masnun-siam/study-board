@@ -11,6 +11,9 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
 import '../features/authentication/application/auth/auth_bloc.dart';
+import '../features/courses/data/repositories/course_repo_impl.dart';
+import '../features/courses/domain/repositories/course_repository.dart';
+import '../features/courses/data/datasources/firestore_datasource.dart';
 import '../features/authentication/infrastructure/firebase_auth_facade.dart';
 import '../core/infrastructure/firebase_injectable_class.dart';
 import '../features/authentication/domain/i_auth_facade.dart';
@@ -44,6 +47,10 @@ GetIt $initGetIt(
   gh.lazySingleton<ShowTotalCourses>(
       () => ShowTotalCourses(get<TeacherHomeRepository>()));
   gh.factory<AuthBloc>(() => AuthBloc(get<IAuthFacade>()));
+  gh.lazySingleton<FireStoreDataSource>(
+      () => FireStoreDataSourceImpl(get<FirebaseFirestore>()));
+  gh.lazySingleton<CourseRepository>(() =>
+      CourseRepoImpl(get<DataConnectionChecker>(), get<FireStoreDataSource>()));
   return get;
 }
 

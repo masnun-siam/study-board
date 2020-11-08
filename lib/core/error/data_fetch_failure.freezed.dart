@@ -22,6 +22,11 @@ class _$DataFetchFailureTearOff {
   InsufficientPermission insufficientPermission() {
     return const InsufficientPermission();
   }
+
+// ignore: unused_element
+  DataNotFound dataNotFound() {
+    return const DataNotFound();
+  }
 }
 
 /// @nodoc
@@ -34,22 +39,26 @@ mixin _$DataFetchFailure {
   Result when<Result extends Object>({
     @required Result networkError(),
     @required Result insufficientPermission(),
+    @required Result dataNotFound(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result networkError(),
     Result insufficientPermission(),
+    Result dataNotFound(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result networkError(NetworkError value),
     @required Result insufficientPermission(InsufficientPermission value),
+    @required Result dataNotFound(DataNotFound value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result networkError(NetworkError value),
     Result insufficientPermission(InsufficientPermission value),
+    Result dataNotFound(DataNotFound value),
     @required Result orElse(),
   });
 }
@@ -112,9 +121,11 @@ class _$NetworkError implements NetworkError {
   Result when<Result extends Object>({
     @required Result networkError(),
     @required Result insufficientPermission(),
+    @required Result dataNotFound(),
   }) {
     assert(networkError != null);
     assert(insufficientPermission != null);
+    assert(dataNotFound != null);
     return networkError();
   }
 
@@ -123,6 +134,7 @@ class _$NetworkError implements NetworkError {
   Result maybeWhen<Result extends Object>({
     Result networkError(),
     Result insufficientPermission(),
+    Result dataNotFound(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -137,9 +149,11 @@ class _$NetworkError implements NetworkError {
   Result map<Result extends Object>({
     @required Result networkError(NetworkError value),
     @required Result insufficientPermission(InsufficientPermission value),
+    @required Result dataNotFound(DataNotFound value),
   }) {
     assert(networkError != null);
     assert(insufficientPermission != null);
+    assert(dataNotFound != null);
     return networkError(this);
   }
 
@@ -148,6 +162,7 @@ class _$NetworkError implements NetworkError {
   Result maybeMap<Result extends Object>({
     Result networkError(NetworkError value),
     Result insufficientPermission(InsufficientPermission value),
+    Result dataNotFound(DataNotFound value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -203,9 +218,11 @@ class _$InsufficientPermission implements InsufficientPermission {
   Result when<Result extends Object>({
     @required Result networkError(),
     @required Result insufficientPermission(),
+    @required Result dataNotFound(),
   }) {
     assert(networkError != null);
     assert(insufficientPermission != null);
+    assert(dataNotFound != null);
     return insufficientPermission();
   }
 
@@ -214,6 +231,7 @@ class _$InsufficientPermission implements InsufficientPermission {
   Result maybeWhen<Result extends Object>({
     Result networkError(),
     Result insufficientPermission(),
+    Result dataNotFound(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -228,9 +246,11 @@ class _$InsufficientPermission implements InsufficientPermission {
   Result map<Result extends Object>({
     @required Result networkError(NetworkError value),
     @required Result insufficientPermission(InsufficientPermission value),
+    @required Result dataNotFound(DataNotFound value),
   }) {
     assert(networkError != null);
     assert(insufficientPermission != null);
+    assert(dataNotFound != null);
     return insufficientPermission(this);
   }
 
@@ -239,6 +259,7 @@ class _$InsufficientPermission implements InsufficientPermission {
   Result maybeMap<Result extends Object>({
     Result networkError(NetworkError value),
     Result insufficientPermission(InsufficientPermission value),
+    Result dataNotFound(DataNotFound value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -251,4 +272,101 @@ class _$InsufficientPermission implements InsufficientPermission {
 
 abstract class InsufficientPermission implements DataFetchFailure {
   const factory InsufficientPermission() = _$InsufficientPermission;
+}
+
+/// @nodoc
+abstract class $DataNotFoundCopyWith<$Res> {
+  factory $DataNotFoundCopyWith(
+          DataNotFound value, $Res Function(DataNotFound) then) =
+      _$DataNotFoundCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$DataNotFoundCopyWithImpl<$Res>
+    extends _$DataFetchFailureCopyWithImpl<$Res>
+    implements $DataNotFoundCopyWith<$Res> {
+  _$DataNotFoundCopyWithImpl(
+      DataNotFound _value, $Res Function(DataNotFound) _then)
+      : super(_value, (v) => _then(v as DataNotFound));
+
+  @override
+  DataNotFound get _value => super._value as DataNotFound;
+}
+
+/// @nodoc
+class _$DataNotFound implements DataNotFound {
+  const _$DataNotFound();
+
+  @override
+  String toString() {
+    return 'DataFetchFailure.dataNotFound()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is DataNotFound);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result networkError(),
+    @required Result insufficientPermission(),
+    @required Result dataNotFound(),
+  }) {
+    assert(networkError != null);
+    assert(insufficientPermission != null);
+    assert(dataNotFound != null);
+    return dataNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result networkError(),
+    Result insufficientPermission(),
+    Result dataNotFound(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (dataNotFound != null) {
+      return dataNotFound();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result networkError(NetworkError value),
+    @required Result insufficientPermission(InsufficientPermission value),
+    @required Result dataNotFound(DataNotFound value),
+  }) {
+    assert(networkError != null);
+    assert(insufficientPermission != null);
+    assert(dataNotFound != null);
+    return dataNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result networkError(NetworkError value),
+    Result insufficientPermission(InsufficientPermission value),
+    Result dataNotFound(DataNotFound value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (dataNotFound != null) {
+      return dataNotFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DataNotFound implements DataFetchFailure {
+  const factory DataNotFound() = _$DataNotFound;
 }

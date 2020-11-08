@@ -6,6 +6,7 @@ part 'class.g.dart';
 @freezed
 abstract class Class with _$Class {
   factory Class({
+    @required String classId,
     @required String classLink,
     @required DateTime classSchedule,
   }) = _Class;

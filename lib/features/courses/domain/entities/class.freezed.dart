@@ -17,8 +17,12 @@ class _$ClassTearOff {
   const _$ClassTearOff();
 
 // ignore: unused_element
-  _Class call({@required String classLink, @required DateTime classSchedule}) {
+  _Class call(
+      {@required String classId,
+      @required String classLink,
+      @required DateTime classSchedule}) {
     return _Class(
+      classId: classId,
       classLink: classLink,
       classSchedule: classSchedule,
     );
@@ -36,6 +40,7 @@ const $Class = _$ClassTearOff();
 
 /// @nodoc
 mixin _$Class {
+  String get classId;
   String get classLink;
   DateTime get classSchedule;
 
@@ -47,7 +52,7 @@ mixin _$Class {
 abstract class $ClassCopyWith<$Res> {
   factory $ClassCopyWith(Class value, $Res Function(Class) then) =
       _$ClassCopyWithImpl<$Res>;
-  $Res call({String classLink, DateTime classSchedule});
+  $Res call({String classId, String classLink, DateTime classSchedule});
 }
 
 /// @nodoc
@@ -60,10 +65,12 @@ class _$ClassCopyWithImpl<$Res> implements $ClassCopyWith<$Res> {
 
   @override
   $Res call({
+    Object classId = freezed,
     Object classLink = freezed,
     Object classSchedule = freezed,
   }) {
     return _then(_value.copyWith(
+      classId: classId == freezed ? _value.classId : classId as String,
       classLink: classLink == freezed ? _value.classLink : classLink as String,
       classSchedule: classSchedule == freezed
           ? _value.classSchedule
@@ -77,7 +84,7 @@ abstract class _$ClassCopyWith<$Res> implements $ClassCopyWith<$Res> {
   factory _$ClassCopyWith(_Class value, $Res Function(_Class) then) =
       __$ClassCopyWithImpl<$Res>;
   @override
-  $Res call({String classLink, DateTime classSchedule});
+  $Res call({String classId, String classLink, DateTime classSchedule});
 }
 
 /// @nodoc
@@ -91,10 +98,12 @@ class __$ClassCopyWithImpl<$Res> extends _$ClassCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object classId = freezed,
     Object classLink = freezed,
     Object classSchedule = freezed,
   }) {
     return _then(_Class(
+      classId: classId == freezed ? _value.classId : classId as String,
       classLink: classLink == freezed ? _value.classLink : classLink as String,
       classSchedule: classSchedule == freezed
           ? _value.classSchedule
@@ -107,13 +116,19 @@ class __$ClassCopyWithImpl<$Res> extends _$ClassCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Class implements _Class {
-  _$_Class({@required this.classLink, @required this.classSchedule})
-      : assert(classLink != null),
+  _$_Class(
+      {@required this.classId,
+      @required this.classLink,
+      @required this.classSchedule})
+      : assert(classId != null),
+        assert(classLink != null),
         assert(classSchedule != null);
 
   factory _$_Class.fromJson(Map<String, dynamic> json) =>
       _$_$_ClassFromJson(json);
 
+  @override
+  final String classId;
   @override
   final String classLink;
   @override
@@ -121,13 +136,16 @@ class _$_Class implements _Class {
 
   @override
   String toString() {
-    return 'Class(classLink: $classLink, classSchedule: $classSchedule)';
+    return 'Class(classId: $classId, classLink: $classLink, classSchedule: $classSchedule)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Class &&
+            (identical(other.classId, classId) ||
+                const DeepCollectionEquality()
+                    .equals(other.classId, classId)) &&
             (identical(other.classLink, classLink) ||
                 const DeepCollectionEquality()
                     .equals(other.classLink, classLink)) &&
@@ -139,6 +157,7 @@ class _$_Class implements _Class {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(classId) ^
       const DeepCollectionEquality().hash(classLink) ^
       const DeepCollectionEquality().hash(classSchedule);
 
@@ -154,11 +173,14 @@ class _$_Class implements _Class {
 
 abstract class _Class implements Class {
   factory _Class(
-      {@required String classLink,
+      {@required String classId,
+      @required String classLink,
       @required DateTime classSchedule}) = _$_Class;
 
   factory _Class.fromJson(Map<String, dynamic> json) = _$_Class.fromJson;
 
+  @override
+  String get classId;
   @override
   String get classLink;
   @override
