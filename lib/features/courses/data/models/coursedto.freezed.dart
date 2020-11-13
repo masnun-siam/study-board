@@ -22,7 +22,7 @@ class _$CourseDtoTearOff {
       @required String courseCode,
       @required String courseName,
       @required List<Map<String, dynamic>> classes,
-      @required List<String> students}) {
+      @required List<Map<String, dynamic>> students}) {
     return _CourseDto(
       courseId: courseId,
       courseCode: courseCode,
@@ -48,7 +48,7 @@ mixin _$CourseDto {
   String get courseCode;
   String get courseName;
   List<Map<String, dynamic>> get classes;
-  List<String> get students;
+  List<Map<String, dynamic>> get students;
 
   Map<String, dynamic> toJson();
   $CourseDtoCopyWith<CourseDto> get copyWith;
@@ -63,7 +63,7 @@ abstract class $CourseDtoCopyWith<$Res> {
       String courseCode,
       String courseName,
       List<Map<String, dynamic>> classes,
-      List<String> students});
+      List<Map<String, dynamic>> students});
 }
 
 /// @nodoc
@@ -91,8 +91,9 @@ class _$CourseDtoCopyWithImpl<$Res> implements $CourseDtoCopyWith<$Res> {
       classes: classes == freezed
           ? _value.classes
           : classes as List<Map<String, dynamic>>,
-      students:
-          students == freezed ? _value.students : students as List<String>,
+      students: students == freezed
+          ? _value.students
+          : students as List<Map<String, dynamic>>,
     ));
   }
 }
@@ -108,7 +109,7 @@ abstract class _$CourseDtoCopyWith<$Res> implements $CourseDtoCopyWith<$Res> {
       String courseCode,
       String courseName,
       List<Map<String, dynamic>> classes,
-      List<String> students});
+      List<Map<String, dynamic>> students});
 }
 
 /// @nodoc
@@ -137,8 +138,9 @@ class __$CourseDtoCopyWithImpl<$Res> extends _$CourseDtoCopyWithImpl<$Res>
       classes: classes == freezed
           ? _value.classes
           : classes as List<Map<String, dynamic>>,
-      students:
-          students == freezed ? _value.students : students as List<String>,
+      students: students == freezed
+          ? _value.students
+          : students as List<Map<String, dynamic>>,
     ));
   }
 }
@@ -172,7 +174,7 @@ class _$_CourseDto extends _CourseDto {
   @override
   final List<Map<String, dynamic>> classes;
   @override
-  final List<String> students;
+  final List<Map<String, dynamic>> students;
 
   @override
   String toString() {
@@ -226,7 +228,7 @@ abstract class _CourseDto extends CourseDto {
       @required String courseCode,
       @required String courseName,
       @required List<Map<String, dynamic>> classes,
-      @required List<String> students}) = _$_CourseDto;
+      @required List<Map<String, dynamic>> students}) = _$_CourseDto;
 
   factory _CourseDto.fromJson(Map<String, dynamic> json) =
       _$_CourseDto.fromJson;
@@ -240,7 +242,7 @@ abstract class _CourseDto extends CourseDto {
   @override
   List<Map<String, dynamic>> get classes;
   @override
-  List<String> get students;
+  List<Map<String, dynamic>> get students;
   @override
   _$CourseDtoCopyWith<_CourseDto> get copyWith;
 }

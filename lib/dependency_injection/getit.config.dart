@@ -13,6 +13,7 @@ import 'package:injectable/injectable.dart';
 import '../features/authentication/application/auth/auth_bloc.dart';
 import '../features/courses/data/repositories/course_repo_impl.dart';
 import '../features/courses/domain/repositories/course_repository.dart';
+import '../features/courses/presentation/pages/course_list/bloc/courselist_bloc.dart';
 import '../features/courses/data/datasources/firestore_datasource.dart';
 import '../features/authentication/infrastructure/firebase_auth_facade.dart';
 import '../core/infrastructure/firebase_injectable_class.dart';
@@ -51,6 +52,7 @@ GetIt $initGetIt(
       () => FireStoreDataSourceImpl(get<FirebaseFirestore>()));
   gh.lazySingleton<CourseRepository>(() =>
       CourseRepoImpl(get<DataConnectionChecker>(), get<FireStoreDataSource>()));
+  gh.factory<CourselistBloc>(() => CourselistBloc(get<CourseRepository>()));
   return get;
 }
 

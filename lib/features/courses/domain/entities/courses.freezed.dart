@@ -19,7 +19,7 @@ class _$CoursesTearOff {
       @required String courseCode,
       @required String courseName,
       @required List<Class> classes,
-      @required List<CurrentUser> students}) {
+      @required List<Students> students}) {
     return _Courses(
       courseId: courseId,
       courseCode: courseCode,
@@ -40,7 +40,7 @@ mixin _$Courses {
   String get courseCode;
   String get courseName;
   List<Class> get classes;
-  List<CurrentUser> get students;
+  List<Students> get students;
 
   $CoursesCopyWith<Courses> get copyWith;
 }
@@ -54,7 +54,7 @@ abstract class $CoursesCopyWith<$Res> {
       String courseCode,
       String courseName,
       List<Class> classes,
-      List<CurrentUser> students});
+      List<Students> students});
 }
 
 /// @nodoc
@@ -81,7 +81,7 @@ class _$CoursesCopyWithImpl<$Res> implements $CoursesCopyWith<$Res> {
           courseName == freezed ? _value.courseName : courseName as String,
       classes: classes == freezed ? _value.classes : classes as List<Class>,
       students:
-          students == freezed ? _value.students : students as List<CurrentUser>,
+          students == freezed ? _value.students : students as List<Students>,
     ));
   }
 }
@@ -96,7 +96,7 @@ abstract class _$CoursesCopyWith<$Res> implements $CoursesCopyWith<$Res> {
       String courseCode,
       String courseName,
       List<Class> classes,
-      List<CurrentUser> students});
+      List<Students> students});
 }
 
 /// @nodoc
@@ -124,7 +124,7 @@ class __$CoursesCopyWithImpl<$Res> extends _$CoursesCopyWithImpl<$Res>
           courseName == freezed ? _value.courseName : courseName as String,
       classes: classes == freezed ? _value.classes : classes as List<Class>,
       students:
-          students == freezed ? _value.students : students as List<CurrentUser>,
+          students == freezed ? _value.students : students as List<Students>,
     ));
   }
 }
@@ -152,7 +152,7 @@ class _$_Courses implements _Courses {
   @override
   final List<Class> classes;
   @override
-  final List<CurrentUser> students;
+  final List<Students> students;
 
   @override
   String toString() {
@@ -200,7 +200,7 @@ abstract class _Courses implements Courses {
       @required String courseCode,
       @required String courseName,
       @required List<Class> classes,
-      @required List<CurrentUser> students}) = _$_Courses;
+      @required List<Students> students}) = _$_Courses;
 
   @override
   UniqueId get courseId;
@@ -211,7 +211,7 @@ abstract class _Courses implements Courses {
   @override
   List<Class> get classes;
   @override
-  List<CurrentUser> get students;
+  List<Students> get students;
   @override
   _$CoursesCopyWith<_Courses> get copyWith;
 }

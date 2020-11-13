@@ -5,7 +5,6 @@ import 'package:injectable/injectable.dart';
 abstract class FireStoreDataSource {
   Future<void> addCourses(String courseId, Map<String, dynamic> data);
   Future<void> deleteCourses(String courseId);
-  Future<void> addClass(String classId, Map<String, dynamic> data);
   Future<void> deleteClass(String classId);
   Stream<Map<String, dynamic>> getCourses(String userId);
   Future<Map<String, dynamic>> getStudentFromId(String id);
@@ -16,11 +15,6 @@ class FireStoreDataSourceImpl extends FireStoreDataSource {
   final FirebaseFirestore _firestore;
 
   FireStoreDataSourceImpl(this._firestore);
-
-  @override
-  Future<void> addClass(String classId, Map<String, dynamic> data) async {
-    await _firestore.collection('classes').doc(classId).set(data);
-  }
 
   @override
   Future<void> addCourses(String courseId, Map<String, dynamic> data) async {
@@ -51,4 +45,6 @@ class FireStoreDataSourceImpl extends FireStoreDataSource {
         ? result.data()
         : throw PlatformException(code: 'Data not found');
   }
+
+  
 }

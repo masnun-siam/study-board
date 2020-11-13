@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:study_resources/features/authentication/domain/auth_value_objects.dart';
-import 'package:study_resources/features/courses/domain/entities/students.dart';
+
+import '../../../authentication/domain/auth_value_objects.dart';
+import '../../domain/entities/students.dart';
 
 part 'studentdto.freezed.dart';
 part 'studentdto.g.dart';

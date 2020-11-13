@@ -30,20 +30,6 @@ class CourseRepoImpl extends CourseRepository {
   }
 
   @override
-  Future<Either<DataFetchFailure, Unit>> addClass(Class newClass) async {
-    if (await _connectionChecker.hasConnection) {
-      try {
-        await _dataSource.addClass(newClass.classId, newClass.toJson());
-        return right(unit);
-      } catch (e) {
-        return left(const DataFetchFailure.insufficientPermission());
-      }
-    } else {
-      return left(const DataFetchFailure.networkError());
-    }
-  }
-
-  @override
   Future<Either<DataFetchFailure, Unit>> addCourse(Courses course) async {
     if (await _connectionChecker.hasConnection) {
       try {

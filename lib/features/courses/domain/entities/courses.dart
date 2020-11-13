@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:study_resources/features/authentication/domain/auth_value_objects.dart';
+import 'package:study_resources/features/courses/domain/entities/students.dart';
 
 import '../../../authentication/domain/user.dart';
 import 'class.dart';
@@ -13,7 +14,7 @@ abstract class Courses with _$Courses {
     @required String courseCode,
     @required String courseName,
     @required List<Class> classes,
-    @required List<CurrentUser> students,
+    @required List<Students> students,
   }) = _Courses;
 
 }

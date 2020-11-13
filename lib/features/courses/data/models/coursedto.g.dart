@@ -14,7 +14,9 @@ _$_CourseDto _$_$_CourseDtoFromJson(Map<String, dynamic> json) {
     classes: (json['classes'] as List)
         ?.map((e) => e as Map<String, dynamic>)
         ?.toList(),
-    students: (json['students'] as List)?.map((e) => e as String)?.toList(),
+    students: (json['students'] as List)
+        ?.map((e) => e as Map<String, dynamic>)
+        ?.toList(),
   );
 }
 

@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:study_resources/common/account_type.dart';
 import 'package:study_resources/features/authentication/domain/auth_value_objects.dart';
-import 'package:study_resources/features/authentication/domain/user.dart';
+import 'package:study_resources/features/courses/data/models/studentdto.dart';
 import 'package:study_resources/features/courses/domain/entities/class.dart';
 import 'package:study_resources/features/courses/domain/entities/courses.dart';
 
@@ -15,7 +14,7 @@ abstract class CourseDto implements _$CourseDto {
     @required String courseCode,
     @required String courseName,
     @required List<Map<String, dynamic>> classes,
-    @required List<String> students,
+    @required List<Map<String, dynamic>> students,
   }) = _CourseDto;
 
   const CourseDto._();
@@ -26,7 +25,7 @@ abstract class CourseDto implements _$CourseDto {
       courseCode: courses.courseCode,
       courseName: courses.courseName,
       classes: courses.classes.map((e) => e.toJson()).toList(),
-      students: courses.students.map((e) => e.id.getOrCrash()).toList(),
+      students: courses.students.map((e) => StudentDto.fromDomain(e).toJson()).toList(),
     );
   }
 
@@ -39,13 +38,7 @@ abstract class CourseDto implements _$CourseDto {
       courseCode: courseCode,
       courseName: courseName,
       classes: classes.map((e) => Class.fromJson(e)).toList(),
-      students: students
-          .map((e) => CurrentUser(
-                id: UniqueId.fromUniqueString(e),
-                email: EmailAddress('email.address@easy.com'),
-                userType: ACCOUNT_TYPE.student,
-              ))
-          .toList(),
+      students: students.map((e) => StudentDto.fromJson(e).toDomain()).toList(),
     );
   }
 }
