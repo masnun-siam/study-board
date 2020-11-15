@@ -1,19 +1,19 @@
+import 'package:dartz/dartz.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
-import 'package:study_resources/common/account_type.dart';
-import 'package:study_resources/dependency_injection/getit.dart';
-import 'package:study_resources/features/authentication/domain/auth_value_objects.dart';
-import 'package:study_resources/features/authentication/domain/i_auth_facade.dart';
-import 'package:study_resources/features/courses/data/datasources/firestore_datasource.dart';
-import 'package:study_resources/features/courses/data/models/coursedto.dart';
-import 'package:study_resources/features/courses/data/models/studentdto.dart';
-import 'package:study_resources/features/courses/domain/entities/courses.dart';
-import 'package:study_resources/features/courses/domain/entities/class.dart';
-import 'package:study_resources/core/error/data_fetch_failure.dart';
-import 'package:dartz/dartz.dart';
-import 'package:study_resources/features/courses/domain/entities/students.dart';
-import 'package:study_resources/features/courses/domain/repositories/course_repository.dart';
+
+import '../../../../common/account_type.dart';
+import '../../../../core/error/data_fetch_failure.dart';
+import '../../../../dependency_injection/getit.dart';
+import '../../../authentication/domain/i_auth_facade.dart';
+import '../../domain/entities/class.dart';
+import '../../domain/entities/courses.dart';
+import '../../domain/entities/students.dart';
+import '../../domain/repositories/course_repository.dart';
+import '../datasources/firestore_datasource.dart';
+import '../models/coursedto.dart';
+import '../models/studentdto.dart';
 
 @LazySingleton(as: CourseRepository)
 class CourseRepoImpl extends CourseRepository {

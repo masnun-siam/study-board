@@ -30,6 +30,10 @@ dependencies:
   regexed_validator: ^1.0.4
   uuid: ^2.2.2
 
+  simple_autocomplete_formfield:
+    git:
+      url: https://github.com/jifalops/simple_autocomplete_formfield.git
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

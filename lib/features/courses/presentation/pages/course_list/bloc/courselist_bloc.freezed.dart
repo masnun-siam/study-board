@@ -306,15 +306,16 @@ class _$CourselistStateTearOff {
   }
 
 // ignore: unused_element
-  _Loading loading() {
-    return const _Loading();
+  _Loaded loaded(List<Courses> courses, bool authorized) {
+    return _Loaded(
+      courses,
+      authorized,
+    );
   }
 
 // ignore: unused_element
-  _Loaded loaded(List<Courses> courses) {
-    return _Loaded(
-      courses,
-    );
+  _Loading loading() {
+    return const _Loading();
   }
 
 // ignore: unused_element
@@ -334,30 +335,30 @@ mixin _$CourselistState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
+    @required Result loaded(List<Courses> courses, bool authorized),
     @required Result loading(),
-    @required Result loaded(List<Courses> courses),
     @required Result loadingFailed(DataFetchFailure failure),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
+    Result loaded(List<Courses> courses, bool authorized),
     Result loading(),
-    Result loaded(List<Courses> courses),
     Result loadingFailed(DataFetchFailure failure),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result loading(_Loading value),
     @required Result loaded(_Loaded value),
+    @required Result loading(_Loading value),
     @required Result loadingFailed(_LoadingFailed value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result loading(_Loading value),
     Result loaded(_Loaded value),
+    Result loading(_Loading value),
     Result loadingFailed(_LoadingFailed value),
     @required Result orElse(),
   });
@@ -417,13 +418,13 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
+    @required Result loaded(List<Courses> courses, bool authorized),
     @required Result loading(),
-    @required Result loaded(List<Courses> courses),
     @required Result loadingFailed(DataFetchFailure failure),
   }) {
     assert(initial != null);
-    assert(loading != null);
     assert(loaded != null);
+    assert(loading != null);
     assert(loadingFailed != null);
     return initial();
   }
@@ -432,8 +433,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
+    Result loaded(List<Courses> courses, bool authorized),
     Result loading(),
-    Result loaded(List<Courses> courses),
     Result loadingFailed(DataFetchFailure failure),
     @required Result orElse(),
   }) {
@@ -448,13 +449,13 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result loading(_Loading value),
     @required Result loaded(_Loaded value),
+    @required Result loading(_Loading value),
     @required Result loadingFailed(_LoadingFailed value),
   }) {
     assert(initial != null);
-    assert(loading != null);
     assert(loaded != null);
+    assert(loading != null);
     assert(loadingFailed != null);
     return initial(this);
   }
@@ -463,8 +464,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result loading(_Loading value),
     Result loaded(_Loaded value),
+    Result loading(_Loading value),
     Result loadingFailed(_LoadingFailed value),
     @required Result orElse(),
   }) {
@@ -478,6 +479,143 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements CourselistState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$LoadedCopyWith<$Res> {
+  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
+      __$LoadedCopyWithImpl<$Res>;
+  $Res call({List<Courses> courses, bool authorized});
+}
+
+/// @nodoc
+class __$LoadedCopyWithImpl<$Res> extends _$CourselistStateCopyWithImpl<$Res>
+    implements _$LoadedCopyWith<$Res> {
+  __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
+      : super(_value, (v) => _then(v as _Loaded));
+
+  @override
+  _Loaded get _value => super._value as _Loaded;
+
+  @override
+  $Res call({
+    Object courses = freezed,
+    Object authorized = freezed,
+  }) {
+    return _then(_Loaded(
+      courses == freezed ? _value.courses : courses as List<Courses>,
+      authorized == freezed ? _value.authorized : authorized as bool,
+    ));
+  }
+}
+
+/// @nodoc
+class _$_Loaded implements _Loaded {
+  const _$_Loaded(this.courses, this.authorized)
+      : assert(courses != null),
+        assert(authorized != null);
+
+  @override
+  final List<Courses> courses;
+  @override
+  final bool authorized;
+
+  @override
+  String toString() {
+    return 'CourselistState.loaded(courses: $courses, authorized: $authorized)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _Loaded &&
+            (identical(other.courses, courses) ||
+                const DeepCollectionEquality()
+                    .equals(other.courses, courses)) &&
+            (identical(other.authorized, authorized) ||
+                const DeepCollectionEquality()
+                    .equals(other.authorized, authorized)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(courses) ^
+      const DeepCollectionEquality().hash(authorized);
+
+  @override
+  _$LoadedCopyWith<_Loaded> get copyWith =>
+      __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initial(),
+    @required Result loaded(List<Courses> courses, bool authorized),
+    @required Result loading(),
+    @required Result loadingFailed(DataFetchFailure failure),
+  }) {
+    assert(initial != null);
+    assert(loaded != null);
+    assert(loading != null);
+    assert(loadingFailed != null);
+    return loaded(courses, authorized);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initial(),
+    Result loaded(List<Courses> courses, bool authorized),
+    Result loading(),
+    Result loadingFailed(DataFetchFailure failure),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loaded != null) {
+      return loaded(courses, authorized);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initial(_Initial value),
+    @required Result loaded(_Loaded value),
+    @required Result loading(_Loading value),
+    @required Result loadingFailed(_LoadingFailed value),
+  }) {
+    assert(initial != null);
+    assert(loaded != null);
+    assert(loading != null);
+    assert(loadingFailed != null);
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initial(_Initial value),
+    Result loaded(_Loaded value),
+    Result loading(_Loading value),
+    Result loadingFailed(_LoadingFailed value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loaded implements CourselistState {
+  const factory _Loaded(List<Courses> courses, bool authorized) = _$_Loaded;
+
+  List<Courses> get courses;
+  bool get authorized;
+  _$LoadedCopyWith<_Loaded> get copyWith;
 }
 
 /// @nodoc
@@ -517,13 +655,13 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
+    @required Result loaded(List<Courses> courses, bool authorized),
     @required Result loading(),
-    @required Result loaded(List<Courses> courses),
     @required Result loadingFailed(DataFetchFailure failure),
   }) {
     assert(initial != null);
-    assert(loading != null);
     assert(loaded != null);
+    assert(loading != null);
     assert(loadingFailed != null);
     return loading();
   }
@@ -532,8 +670,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
+    Result loaded(List<Courses> courses, bool authorized),
     Result loading(),
-    Result loaded(List<Courses> courses),
     Result loadingFailed(DataFetchFailure failure),
     @required Result orElse(),
   }) {
@@ -548,13 +686,13 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result loading(_Loading value),
     @required Result loaded(_Loaded value),
+    @required Result loading(_Loading value),
     @required Result loadingFailed(_LoadingFailed value),
   }) {
     assert(initial != null);
-    assert(loading != null);
     assert(loaded != null);
+    assert(loading != null);
     assert(loadingFailed != null);
     return loading(this);
   }
@@ -563,8 +701,8 @@ class _$_Loading implements _Loading {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result loading(_Loading value),
     Result loaded(_Loaded value),
+    Result loading(_Loading value),
     Result loadingFailed(_LoadingFailed value),
     @required Result orElse(),
   }) {
@@ -578,130 +716,6 @@ class _$_Loading implements _Loading {
 
 abstract class _Loading implements CourselistState {
   const factory _Loading() = _$_Loading;
-}
-
-/// @nodoc
-abstract class _$LoadedCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
-      __$LoadedCopyWithImpl<$Res>;
-  $Res call({List<Courses> courses});
-}
-
-/// @nodoc
-class __$LoadedCopyWithImpl<$Res> extends _$CourselistStateCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
-      : super(_value, (v) => _then(v as _Loaded));
-
-  @override
-  _Loaded get _value => super._value as _Loaded;
-
-  @override
-  $Res call({
-    Object courses = freezed,
-  }) {
-    return _then(_Loaded(
-      courses == freezed ? _value.courses : courses as List<Courses>,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_Loaded implements _Loaded {
-  const _$_Loaded(this.courses) : assert(courses != null);
-
-  @override
-  final List<Courses> courses;
-
-  @override
-  String toString() {
-    return 'CourselistState.loaded(courses: $courses)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _Loaded &&
-            (identical(other.courses, courses) ||
-                const DeepCollectionEquality().equals(other.courses, courses)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(courses);
-
-  @override
-  _$LoadedCopyWith<_Loaded> get copyWith =>
-      __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initial(),
-    @required Result loading(),
-    @required Result loaded(List<Courses> courses),
-    @required Result loadingFailed(DataFetchFailure failure),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(loaded != null);
-    assert(loadingFailed != null);
-    return loaded(courses);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initial(),
-    Result loading(),
-    Result loaded(List<Courses> courses),
-    Result loadingFailed(DataFetchFailure failure),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (loaded != null) {
-      return loaded(courses);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initial(_Initial value),
-    @required Result loading(_Loading value),
-    @required Result loaded(_Loaded value),
-    @required Result loadingFailed(_LoadingFailed value),
-  }) {
-    assert(initial != null);
-    assert(loading != null);
-    assert(loaded != null);
-    assert(loadingFailed != null);
-    return loaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initial(_Initial value),
-    Result loading(_Loading value),
-    Result loaded(_Loaded value),
-    Result loadingFailed(_LoadingFailed value),
-    @required Result orElse(),
-  }) {
-    assert(orElse != null);
-    if (loaded != null) {
-      return loaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Loaded implements CourselistState {
-  const factory _Loaded(List<Courses> courses) = _$_Loaded;
-
-  List<Courses> get courses;
-  _$LoadedCopyWith<_Loaded> get copyWith;
 }
 
 /// @nodoc
@@ -777,13 +791,13 @@ class _$_LoadingFailed implements _LoadingFailed {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
+    @required Result loaded(List<Courses> courses, bool authorized),
     @required Result loading(),
-    @required Result loaded(List<Courses> courses),
     @required Result loadingFailed(DataFetchFailure failure),
   }) {
     assert(initial != null);
-    assert(loading != null);
     assert(loaded != null);
+    assert(loading != null);
     assert(loadingFailed != null);
     return loadingFailed(failure);
   }
@@ -792,8 +806,8 @@ class _$_LoadingFailed implements _LoadingFailed {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
+    Result loaded(List<Courses> courses, bool authorized),
     Result loading(),
-    Result loaded(List<Courses> courses),
     Result loadingFailed(DataFetchFailure failure),
     @required Result orElse(),
   }) {
@@ -808,13 +822,13 @@ class _$_LoadingFailed implements _LoadingFailed {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initial(_Initial value),
-    @required Result loading(_Loading value),
     @required Result loaded(_Loaded value),
+    @required Result loading(_Loading value),
     @required Result loadingFailed(_LoadingFailed value),
   }) {
     assert(initial != null);
-    assert(loading != null);
     assert(loaded != null);
+    assert(loading != null);
     assert(loadingFailed != null);
     return loadingFailed(this);
   }
@@ -823,8 +837,8 @@ class _$_LoadingFailed implements _LoadingFailed {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initial(_Initial value),
-    Result loading(_Loading value),
     Result loaded(_Loaded value),
+    Result loading(_Loading value),
     Result loadingFailed(_LoadingFailed value),
     @required Result orElse(),
   }) {

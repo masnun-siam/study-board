@@ -10,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
+import '../features/courses/presentation/pages/add_course/bloc/addcourse_bloc.dart';
 import '../features/authentication/application/auth/auth_bloc.dart';
 import '../features/courses/data/repositories/course_repo_impl.dart';
 import '../features/courses/domain/repositories/course_repository.dart';
@@ -53,6 +54,7 @@ GetIt $initGetIt(
   gh.lazySingleton<CourseRepository>(() =>
       CourseRepoImpl(get<DataConnectionChecker>(), get<FireStoreDataSource>()));
   gh.factory<CourselistBloc>(() => CourselistBloc(get<CourseRepository>()));
+  gh.factory<AddcourseBloc>(() => AddcourseBloc(get<CourseRepository>()));
   return get;
 }
 

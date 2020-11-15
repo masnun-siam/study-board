@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:study_resources/common/page_routes.gr.dart';
@@ -9,7 +10,9 @@ import 'package:study_resources/features/courses/presentation/pages/course_list/
 class CourseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: const Text('Courses'),
         actions: [
@@ -36,15 +39,34 @@ class CourseList extends StatelessWidget {
               return const CircularProgressIndicator();
             },
             loaded: (loadedEvent) {
-              return ListView.builder(
-                itemCount: loadedEvent.courses.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(loadedEvent.courses[index].courseName),
-                    subtitle: Text(
-                        'Course code: ${loadedEvent.courses[index].courseCode}'),
-                  );
-                },
+              return Scaffold(
+                floatingActionButton: FloatingActionButton(
+                  onPressed: () {
+                    if (loadedEvent.authorized) {
+                      ExtendedNavigator.root.push(Routes.addCoursePage);
+                    } else {
+                      FlushbarHelper.createInformation(
+                        message: "Only a teacher can add course",
+                      ).show(context);
+                    }
+                  },
+                  child: const Icon(Icons.add),
+                ),
+                body: ListView.builder(
+                  itemCount: loadedEvent.courses.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(loadedEvent.courses[index].courseName),
+                      subtitle: Text(
+                        'Course code: ${loadedEvent.courses[index].courseCode}',
+                      ),
+                      onTap: () {
+                        ExtendedNavigator.root.push(Routes.coursePage,
+                            arguments: loadedEvent.courses[index]);
+                      },
+                    );
+                  },
+                ),
               );
             },
             loadingFailed: (lodingFailedEvent) {

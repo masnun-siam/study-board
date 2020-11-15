@@ -32,8 +32,16 @@ class StudyResources extends StatelessWidget {
               ),
             ],
             child: MaterialApp(
-              builder:
-                  ExtendedNavigator.builder<PageRoutes>(router: PageRoutes()),
+              builder: ExtendedNavigator.builder<PageRoutes>(
+                router: PageRoutes(),
+              ),
+              theme: ThemeData().copyWith(
+                inputDecorationTheme: const InputDecorationTheme(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(width: 1.5),
+                  ),
+                ),
+              ),
             ),
           );
         } else {

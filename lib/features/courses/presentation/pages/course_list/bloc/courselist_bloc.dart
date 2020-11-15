@@ -14,11 +14,13 @@ part 'courselist_bloc.freezed.dart';
 
 @injectable
 class CourselistBloc extends Bloc<CourselistEvent, CourselistState> {
-  final CourseRepository _repository;
   CourselistBloc(this._repository) : super(const _Initial());
 
   StreamSubscription<Either<DataFetchFailure, List<Courses>>>
       _streamSubscription;
+
+
+  final CourseRepository _repository;
 
   @override
   Stream<CourselistState> mapEventToState(
@@ -33,9 +35,10 @@ class CourselistBloc extends Bloc<CourselistEvent, CourselistState> {
         });
       },
       coursesLoaded: (e) async* {
+        final authorization = _repository.isTeacher;
         yield e.coursesOrFailure.fold(
           (failure) => CourselistState.loadingFailed(failure),
-          (courses) => CourselistState.loaded(courses),
+          (courses) => CourselistState.loaded(courses, authorization),
         );
       },
     );
